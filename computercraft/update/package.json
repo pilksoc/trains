@@ -1,0 +1,13 @@
+{
+  "name": "@pilksoft/update",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "tstl"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "@pilksoft/dev-update",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "copy": "node --env-file .env index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@pilksoft/station": "*"
+  }
+}

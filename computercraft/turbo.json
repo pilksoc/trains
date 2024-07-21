@@ -1,0 +1,14 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "bundle": {
+      "outputs": ["dist"]
+    },
+    "copy": {
+      "dependsOn": ["^bundle"]
+    },
+    "dev": {
+      "dependsOn": ["^copy"]
+    }
+  }
+}
