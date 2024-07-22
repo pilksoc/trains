@@ -17,6 +17,8 @@ app.get('/', async (req, res) => {
         const clips = msg.map(part => `${part.toLowerCase()}.wav`);
         const buffers = clips.map((file) => fs.readFileSync(`./media/${file}`))
         const bufferLengths = buffers.map(buffer => buffer.length).reduce((total, length) => total + length);
+        const encoder = new dfpwm.Encoder();
+        const encodedData = encoder.encode(Buffer.concat(buffers, bufferLengths));
 
         if (req.query['wav'] != null) {
             res.send(Buffer.concat(buffers, bufferLengths))
