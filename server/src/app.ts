@@ -26,7 +26,12 @@ app.get('/', async (req, res) => {
             res.send(encodedData);
         }
     } catch (e) {
-        res.send(e);
+        if (e.code === 'ENOENT') {
+            const voxLine = e.path.replace(/^.*[\\/]/, "").replace(/\.[^/.]+$/, "");
+            res.status(404).send({ error: "Could not find VOX line", detail: `Line "${voxLine}" does not exist.` });
+        } else {
+            res.status(500).send({ error: "Internal server error", detail: "An internal error has occurred whilst handling your request. Please try again later." })
+        }
     }
 });
 
