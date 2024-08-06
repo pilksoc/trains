@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
     } catch (e) {
         if (e.code === 'ENOENT') {
             const voxLine = e.path.replace(/^.*[\\/]/, "").replace(/\.[^/.]+$/, "");
-            console.error(`Could not find VOX line; Line "${voxLine}" does not exist.`)
+            console.error(`Could not find VOX line; Line "${voxLine}" does not exist. Full Message ${msg}`)
             res.status(404).send({ error: "Could not find VOX line", detail: `Line "${voxLine}" does not exist.` });
         } else {
             console.error(e)
