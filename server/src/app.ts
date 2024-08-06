@@ -20,6 +20,8 @@ app.get('/', async (req, res) => {
         const encoder = new dfpwm.Encoder();
         const encodedData = encoder.encode(Buffer.concat(buffers, bufferLengths));
 
+        console.log(`Successfully constructed message ${msg}`)
+
         if (req.query['wav'] != null) {
             res.send(Buffer.concat(buffers, bufferLengths))
         } else {
@@ -28,8 +30,10 @@ app.get('/', async (req, res) => {
     } catch (e) {
         if (e.code === 'ENOENT') {
             const voxLine = e.path.replace(/^.*[\\/]/, "").replace(/\.[^/.]+$/, "");
+            console.error(`Could not find VOX line; Line "${voxLine}" does not exist.`)
             res.status(404).send({ error: "Could not find VOX line", detail: `Line "${voxLine}" does not exist.` });
         } else {
+            console.error(e)
             res.status(500).send({ error: "Internal server error", detail: "An internal error has occurred whilst handling your request. Please try again later." })
         }
     }
